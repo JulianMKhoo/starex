@@ -51,5 +51,5 @@ clean: ## help cleaning bin file to specific folder.
 
 ## 
 ## ===================
-## Julian Khoo, 2026
+## MIT© 2026 JulianMKhoo
 ## 
