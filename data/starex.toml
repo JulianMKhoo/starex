@@ -1,0 +1,27 @@
+[time_offset]
+timezone = 7
+direction = "east"
+
+[time_cycle]
+dawn = { icon = "🌆" }
+day = { icon = "🏙️" }
+dusk = { icon = "🌇" }
+night = { icon = "🌃" }
+midnight = { icon = "🌙" }
+
+[fixed_holiday]
+new_year = { name = "New Year's Day", date = "1-1", icon = "🎉" }
+valentine = { name = "Valentine's Day", date = "14-2", icon = "💌" }
+womens_day = { name = "International Women's Day", date = "8-3", icon = "👩🏼" }
+earth_day = { name = "Earth Day", date = "22-4", icon = "🌎" }
+labour_day = { name = "Labour Day", date = "1-5", icon = "👷🏼‍♀️" }
+stonewall_pride = { name = "Stonewall Pride Day", date = "28-6", icon = "🏳️‍🌈" }
+halloween = { name = "Halloween", date = "31-10", icon = "🎃" }
+christmas = { name = "Christmas Day", date = "25-12", icon = "🎄" }
+new_years_eve = { name = "New Year's Eve", date = "31-12", icon = "🎊" }
+
+[floating_holiday]
+mothers_day = { name = "Mother's Day", date = "1-2-5", icon = "🤰🏼" }
+fathers_day = { name = "Father's Day", date = "1-3-6", icon = "🧔🏻" }
+thanksgiving = { name = "Thanksgiving Day", date = "5-4-11", icon = "🦃" }
+black_friday = { name = "Black Friday", date = "6-4-11", icon = "🛍️" }

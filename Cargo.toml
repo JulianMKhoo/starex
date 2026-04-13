@@ -1,0 +1,12 @@
+[package]
+name = "starex"
+version = "1.1.2"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4.44"
+toml = "1.1.2"
+clap = { version = "4.6.0", features = ["derive"] }
+nix = { version = "0.31.2", features = ["fs", "process", "user", "term"] }
+serde = { version = "1.0.228", features = ["derive"] }
+once_cell = "1.21.4"
