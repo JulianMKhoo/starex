@@ -1,6 +1,6 @@
 use std::{fs, io::Write, os::unix::net::UnixListener, thread, time::Duration};
 
-use crate::core::time::time::get_time_logic;
+use crate::core::{holiday::holiday::get_holiday_logic, time::time::get_time_logic};
 
 const SOCKET_PATH: &str = "/tmp/starex.sock";
 
@@ -14,7 +14,7 @@ pub fn listen_term() {
             Ok(mut stream) => {
                 thread::spawn(move || {
                     loop {
-                        let message = format!("{}", get_time_logic());
+                        let message = format!("{} {}", get_time_logic(), get_holiday_logic());
                         if let Err(_) = writeln!(stream, "{}", message) {
                             break;
                         }

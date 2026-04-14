@@ -2,6 +2,17 @@ use chrono::{Datelike, Utc};
 
 use crate::config::config::{get_holiday, get_timezone, get_user_config};
 
+pub fn get_holiday_logic() -> String {
+    let holiday = get_holiday(&get_user_config());
+    let now = Utc::now().with_timezone(&get_timezone(&get_user_config()));
+    for h in holiday {
+        if h.date.day() == now.day() && h.date.month() == now.month() {
+            return String::from(&h.icon);
+        }
+    }
+    String::new()
+}
+
 pub fn get_full_holiday_logic() -> String {
     let mut holiday = get_holiday(&get_user_config());
     holiday.sort_by_key(|h| h.date);
