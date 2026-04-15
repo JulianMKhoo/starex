@@ -1,4 +1,4 @@
-use std::{collections::HashMap, env, fs};
+use std::{collections::HashMap, env, fs, time::SystemTime};
 
 use chrono::{Datelike, FixedOffset, NaiveDate, Utc};
 use once_cell::sync::Lazy;
@@ -28,13 +28,22 @@ fn get_holiday_user_icon(key: &str, user_icon: &HashMap<String, String>) -> Stri
         .unwrap_or_else(|| "".to_string())
 }
 
-pub fn get_user_config() -> Option<UserConfig> {
-    let home = env::var("HOME").ok()?;
-    let user_config_path = format!("{}/.config/starex.toml", home);
+pub fn get_user_config_path() -> Option<String> {
+    env::var("HOME")
+        .ok()
+        .map(|h| format!("{}/.config/starex.toml", h))
+}
 
-    let content = fs::read_to_string(user_config_path).ok()?;
+pub fn get_user_config(path: &Option<String>) -> Option<UserConfig> {
+    let path = path.as_deref()?;
+
+    let content = fs::read_to_string(path).ok()?;
 
     toml::from_str(&content).ok()
+}
+
+pub fn get_user_config_last_modified(path: &Option<String>) -> Option<SystemTime> {
+    fs::metadata(path.as_deref()?).ok()?.modified().ok()
 }
 
 pub fn get_timezone(user_config: &Option<UserConfig>) -> FixedOffset {
