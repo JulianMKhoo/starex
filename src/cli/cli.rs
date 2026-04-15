@@ -14,7 +14,7 @@ pub fn cli_entry(mut lock: BufWriter<StdoutLock<'_>>) {
     let cli = Cli::parse();
     match &cli.command {
         Cmd::Start => create_daemon(),
-        Cmd::Init => print_init_script(),
+        Cmd::Init { shell_type } => print_init_script(&shell_type),
         Cmd::Kill => kill_daemon(),
         Cmd::Time {} => {
             writeln!(lock, "{}", get_time_logic()).unwrap();

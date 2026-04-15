@@ -15,7 +15,9 @@ pub struct Cli {
 pub enum Cmd {
     Start,
     #[command(hide = true)]
-    Init,
+    Init {
+        shell_type: String,
+    },
     Kill,
     Status,
     Time,
