@@ -1,5 +1,6 @@
 use std::io::{BufWriter, stdout};
 
+mod cache;
 mod cli;
 mod config;
 mod core;
