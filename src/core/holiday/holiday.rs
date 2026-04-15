@@ -1,10 +1,11 @@
 use chrono::{Datelike, Utc};
 
-use crate::config::config::{get_holiday, get_timezone, get_user_config};
+use crate::config::config::{get_holiday, get_timezone, get_user_config, get_user_config_path};
 
 pub fn get_holiday_logic() -> String {
-    let holiday = get_holiday(&get_user_config());
-    let now = Utc::now().with_timezone(&get_timezone(&get_user_config()));
+    let path = &get_user_config_path();
+    let holiday = get_holiday(&get_user_config(&path));
+    let now = Utc::now().with_timezone(&get_timezone(&get_user_config(&path)));
     for h in holiday {
         if h.date.day() == now.day() && h.date.month() == now.month() {
             return String::from(&h.icon);
@@ -14,7 +15,8 @@ pub fn get_holiday_logic() -> String {
 }
 
 pub fn get_full_holiday_logic() -> String {
-    let mut holiday = get_holiday(&get_user_config());
+    let path = &get_user_config_path();
+    let mut holiday = get_holiday(&get_user_config(&path));
     holiday.sort_by_key(|h| h.date);
     let mut holiday_result = String::new();
     for h in holiday {
@@ -25,8 +27,9 @@ pub fn get_full_holiday_logic() -> String {
 }
 
 pub fn get_now_holiday_logic() -> String {
-    let holiday = get_holiday(&get_user_config());
-    let now = Utc::now().with_timezone(&get_timezone(&get_user_config()));
+    let path = &get_user_config_path();
+    let holiday = get_holiday(&get_user_config(&path));
+    let now = Utc::now().with_timezone(&get_timezone(&get_user_config(&path)));
     for h in holiday {
         if h.date.day() == now.day() && h.date.month() == now.month() {
             return String::from(&(h.name + " " + &h.date.to_string() + " " + &h.icon));
@@ -36,14 +39,15 @@ pub fn get_now_holiday_logic() -> String {
 }
 
 pub fn get_month_holiday_logic(month: u32) -> String {
-    let mut holiday = get_holiday(&get_user_config());
+    let path = &get_user_config_path();
+    let mut holiday = get_holiday(&get_user_config(&path));
     holiday.sort_by_key(|h| h.date);
     let mut holiday_result = String::new();
     let mut month = month;
 
     if month == 0 {
         month = Utc::now()
-            .with_timezone(&get_timezone(&get_user_config()))
+            .with_timezone(&get_timezone(&get_user_config(&path)))
             .month();
     }
     for h in holiday {

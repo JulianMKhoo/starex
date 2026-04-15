@@ -1,9 +1,10 @@
 use chrono::{Timelike, Utc};
 
-use crate::config::config::{get_timezone, get_user_config};
+use crate::config::config::{get_timezone, get_user_config, get_user_config_path};
 
 pub fn get_time_logic() -> String {
-    let utc_time = Utc::now().with_timezone(&get_timezone(&get_user_config()));
+    let path = &get_user_config_path();
+    let utc_time = Utc::now().with_timezone(&get_timezone(&get_user_config(&path)));
     let hour = utc_time.hour();
     let icon_str: &str;
     let gap = " ";
