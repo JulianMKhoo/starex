@@ -19,7 +19,7 @@ cargo install starex
 # Start the background daemon (creates /tmp/starex.sock and a pid file)
 starex start
 
-# Add the init snippet to your .zshrc (only needed once)
+# Add the init snippet to your .zshrc (only needed once, after starship eval() line)
 eval "$(starex init zsh)"
 ```
 
