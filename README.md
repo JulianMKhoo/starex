@@ -4,7 +4,9 @@ _Experimental project (ZSH Support Only) – many features pending._
 
 A lightweight Rust CLI that extends **Starship** with a real‑time daemon. It can display the current time with an icon, show holidays, and keep a background Unix socket alive for quick queries.
 
-![Preview](https://github.com/JulianMKhoo/starex/blob/main/preview/0.gif)
+<p align="center">
+  <img src="https://github.com/JulianMKhoo/starex/blob/main/preview/0.gif" width="300">
+</p>
 
 ## Install
 
